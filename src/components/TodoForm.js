@@ -23,7 +23,6 @@ export default function TodoForm(props) {
       <input
         type="text"
         placeholder="Agregar tarea"
-        value=""
         value={input}
         name="text"
         className="todo-input"

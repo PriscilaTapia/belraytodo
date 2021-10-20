@@ -14,6 +14,20 @@ export default function TodoList() {
     setTodos(newTodos);
   };
 
+  const updateTodo = (todoId, newValue) => {
+    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+      return;
+    }
+    setTodos((prev) =>
+      prev.map((item) => (item.id === todoId ? newValue : item))
+    );
+  };
+
+  const removeTodo = (id) => {
+    const removeArr = [...todos].filter((todo) => todo.id !== id);
+    setTodos(removeArr);
+  };
+
   const completeTodo = (id) => {
     let updateTodo = todos.map((todo) => {
       if (todo.id === id) {
@@ -28,8 +42,12 @@ export default function TodoList() {
     <div>
       <h1>Tareas para hoy?</h1>
       <TodoForm onSubimit={addTodo} />
-      <Todo></Todo>
-      {/* <Todo todo={todos} completeTodo={completeTodo} /> */}
+      <Todo
+        todo={todos}
+        completeTodo={completeTodo}
+        removeTodo={removeTodo}
+        updateTodo={updateTodo}
+      />
     </div>
   );
 }
