@@ -6,7 +6,7 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-    if (!todo.text || /^\s*$/.test(todo.text)) {
+    if (!todo.text) {
       return;
     }
 
@@ -15,7 +15,7 @@ export default function TodoList() {
   };
 
   const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
+    if (!newValue.text) {
       return;
     }
     setTodos((prev) =>
