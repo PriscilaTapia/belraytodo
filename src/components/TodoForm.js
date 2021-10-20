@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function TodoForm(props) {
   const [input, setInput] = useState("");
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const handleChange = (e) => {
-    setInput(e.target.valued);
+    setInput(e.target.value);
   };
 
   const handleSubimit = (e) => {
-    e.preventDafault();
-
+    e.preventDefault();
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
@@ -27,6 +31,7 @@ export default function TodoForm(props) {
         name="text"
         className="todo-input"
         onChange={handleChange}
+        ref={inputRef}
       />
       <button className="todo-button">añadir tarea</button>
     </form>

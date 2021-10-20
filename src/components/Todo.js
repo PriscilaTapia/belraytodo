@@ -16,10 +16,11 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
       value: "",
     });
   };
+
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
-
+  console.log(todos);
   return todos.map((todo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}

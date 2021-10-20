@@ -37,13 +37,14 @@ export default function TodoList() {
     });
     setTodos(updateTodo);
   };
-
+  // console.log(todos);
   return (
     <div>
       <h1>Tareas para hoy?</h1>
-      <TodoForm onSubimit={addTodo} />
+      <TodoForm onSubmit={addTodo} />
+
       <Todo
-        todo={todos}
+        todos={todos}
         completeTodo={completeTodo}
         removeTodo={removeTodo}
         updateTodo={updateTodo}
