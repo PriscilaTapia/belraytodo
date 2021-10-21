@@ -1,9 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import TodoList from "./TodoList";
 
-test("To Do List", () => {
+beforeEach(() => render(<TodoList />));
+
+test("input agregar tarea", () => {
   render(<TodoList />);
   screen.debug();
-  const todo = screen.getByText(/añadir tarea/i);
-  expect(todo).toBeInTheDocument();
+  //   const btnAgregarTarea = screen.getByRole("button", { name: /añadir tarea/i });
+  //   expect(btnAgregarTarea).toBeInTheDocument();
 });

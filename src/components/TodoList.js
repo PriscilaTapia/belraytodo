@@ -39,7 +39,7 @@ export default function TodoList() {
   };
   // console.log(todos);
   return (
-    <div>
+    <div className="lista">
       <h1>Tareas para hoy?</h1>
       <TodoForm onSubmit={addTodo} />
 

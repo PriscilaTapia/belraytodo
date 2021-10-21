@@ -1,0 +1,11 @@
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+.lista {
+  /* IMPORTANTE */
+  text-align: center;
+}
+body {
+  padding: 50px;
+}
