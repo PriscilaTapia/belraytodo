@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import TodoList from "./TodoList";
 
-beforeEach(() => render(<TodoList />));
+const mockedSetTodo = jest.fn();
 
-test("input agregar tarea", () => {
-  render(<TodoList />);
-  screen.debug();
-  //   const btnAgregarTarea = screen.getByRole("button", { name: /añadir tarea/i });
-  //   expect(btnAgregarTarea).toBeInTheDocument();
+describe("Agregar una entrada", () => {
+  it("placeholder cambia", async () => {
+    render(<TodoList todos={[]} setTodos={mockedSetTodo} />);
+    const placeholderelement = screen.getByPlaceholderText(/Agregar tarea/i);
+    expect(placeholderelement).toBeInTheDocument();
+  });
 });

@@ -33,7 +33,7 @@ export default function TodoForm(props) {
         onChange={handleChange}
         ref={inputRef}
       />
-      <button className="todo-button">añadir tarea</button>
+      <button className="todo-button"> añadir tarea</button>
     </form>
   );
 }
