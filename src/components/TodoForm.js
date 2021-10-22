@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function TodoForm(props) {
+export function TodoForm(props) {
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
 

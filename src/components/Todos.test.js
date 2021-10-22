@@ -1,3 +1,3 @@
-import { fireEvent, render } from "@testing-library/react";
+// import { fireEvent, render } from "@testing-library/react";
 
-test("button icono editar", () => {});
+test.skip("button icono editar", () => {});
