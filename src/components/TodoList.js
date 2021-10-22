@@ -47,8 +47,8 @@ export default function TodoList() {
       <Todo
         todos={todos}
         completeTodo={completeTodo}
-        removeTodo={removeTodo}
         updateTodo={updateTodo}
+        removeTodo={removeTodo}
       />
     </div>
   );
