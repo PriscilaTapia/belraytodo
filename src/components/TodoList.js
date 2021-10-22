@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
+import { crearTodoDB, eliminarTodo, obetenerTodos } from "../api/todo.service";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
 
-  const addTodo = (todo) => {
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  const getTodos = async () => {
+    const todosss = await obetenerTodos();
+    setTodos(todosss);
+  };
+
+  const addTodo = async (todo) => {
     if (!todo.text) {
       return;
     }
+    await crearTodoDB({ text: todo.text });
 
     const newTodos = [todo, ...todos];
     setTodos(newTodos);
@@ -23,7 +34,8 @@ export default function TodoList() {
     );
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = async (id) => {
+    await eliminarTodo(id);
     const removeArr = [...todos].filter((todo) => todo.id !== id);
     setTodos(removeArr);
   };

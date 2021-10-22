@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { TodoForm } from "./TodoForm";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
+import { editarTodoDB } from "../api/todo.service";
 
 export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
   const [edit, setEdit] = useState({
@@ -9,7 +10,8 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
     value: "",
   });
 
-  const submitUpdate = (value) => {
+  const submitUpdate = async (value) => {
+    await editarTodoDB(edit.id, { text: value.text });
     updateTodo(edit.id, value);
     setEdit({
       id: null,
@@ -20,7 +22,6 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
   if (edit.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
-  console.log(todos);
 
   return todos.map((todo, index) => (
     <div
