@@ -24,6 +24,7 @@ export default function TodoForm(props) {
 
   return (
     <form className="todo-form" onSubmit={handleSubimit}>
+      <label htmlFor="tarea">Añade una tarea</label>
       <input
         type="text"
         placeholder="Agregar tarea"
@@ -33,7 +34,7 @@ export default function TodoForm(props) {
         onChange={handleChange}
         ref={inputRef}
       />
-      <button className="todo-button"> añadir tarea</button>
+      <button className="todo-button"> añadir</button>
     </form>
   );
 }
