@@ -3,7 +3,14 @@ import { TodoForm } from "./TodoForm";
 // import { RiCloseCircleLine } from "react-icons/ri";
 // import { TiEdit } from "react-icons/ti";
 
+// interface ToDo {
+//   id: number;
+//   value:string;
+// }
+
 export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
+  // const [edit, setEdit] = useState<ToDo>();
+
   const [edit, setEdit] = useState({
     id: null,
     value: "",

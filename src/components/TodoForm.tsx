@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export function TodoForm(props) {
+export function TodoForm(props: { onSubmit: (arg: { id: number; text: string; }) => void; }) {
   const [input, setInput] = useState("");
-  const inputRef = useRef(null);
+  const inputRef = useRef < HTMLInputElement > (null);
 
   useEffect(() => {
-    inputRef.current.focus();
-  });
+    inputRef?.current?.focus();
+  },[]);
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
     setInput(e.target.value);
   };
 
-  const handleSubimit = (e) => {
+  const handleSubimit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+
     props.onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
