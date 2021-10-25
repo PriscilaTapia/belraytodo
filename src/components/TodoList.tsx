@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
 
-export default function TodoList() {
-  const [todos, setTodos] = useState([]);
+interface ITodoForm {
+  id: number,
+  text: string
+  isComplete: boolean
+}
 
-  const addTodo = (todo) => {
+export default function TodoList() {
+  const [todos, setTodos] = useState<ITodoForm[]>([]);
+
+  const addTodo = (todo: ITodoForm) => {
     if (!todo.text) {
       return;
     }
@@ -14,7 +20,7 @@ export default function TodoList() {
     setTodos(newTodos);
   };
 
-  const updateTodo = (todoId, newValue) => {
+  const updateTodo = (todoId: number, newValue: ITodoForm) => {
     if (!newValue.text) {
       return;
     }
@@ -23,12 +29,12 @@ export default function TodoList() {
     );
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = (id: number) => {
     const removeArr = [...todos].filter((todo) => todo.id !== id);
     setTodos(removeArr);
   };
 
-  const completeTodo = (id) => {
+  const completeTodo = (id:number) => {
     let updateTodo = todos.map((todo) => {
       if (todo.id === id) {
         todo.isComplete = !todo.isComplete;
