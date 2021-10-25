@@ -3,33 +3,37 @@ import { TodoForm } from "./TodoForm";
 // import { RiCloseCircleLine } from "react-icons/ri";
 // import { TiEdit } from "react-icons/ti";
 
-// interface ToDo {
-//   id: number;
-//   value:string;
-// }
+interface ToDo {
+  id: number;
+  text: string;
+  isComplete: boolean
+}
 
-export default function Todo({ todos, completeTodo, removeTodo, updateTodo }) {
-  // const [edit, setEdit] = useState<ToDo>();
 
-  const [edit, setEdit] = useState({
-    id: null,
-    value: "",
-  });
+interface TodoProps{
+  todos: ToDo[];
+  completeTodo: any;
+  removeTodo: any;
+  updateTodo: any;
+}
 
-  const submitUpdate = (value) => {
-    updateTodo(edit.id, value);
+export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: TodoProps):JSX.Element {
+  const [edit, setEdit] =  useState<ToDo | null>(null)
+
+  const submitUpdate = (value: TodoProps) => {
+    updateTodo(edit?.id, value);
     setEdit({
       id: null,
       value: "",
     });
   };
 
-  if (edit.id) {
+  if (edit?.id) {
     return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
   console.log(todos);
 
-  return todos.map((todo, index) => (
+  return todos.map((todo:ToDo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}
       key={index}
