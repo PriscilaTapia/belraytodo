@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export function TodoForm(props: { onSubmit: (arg: { id: number; text: string; isComplete:boolean }) => void; }) {
+interface TodoFormProps { 
+  onSubmit: (arg: { id: number; text: string; isComplete:boolean }) => void; 
+}
+
+export function TodoForm(props: TodoFormProps) {
   const [input, setInput] = useState("");
 
   const inputRef = useRef < HTMLInputElement > (null);
