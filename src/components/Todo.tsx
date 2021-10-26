@@ -4,14 +4,14 @@ import { TodoForm } from "./TodoForm";
 // import { TiEdit } from "react-icons/ti";
 
 interface ToDo {
-  id: number;
+  id: any;
   text: string;
   isComplete: boolean
 }
 
 
 interface TodoProps{
-  todos: ToDo[];
+  todos: ToDo;
   completeTodo: any;
   removeTodo: any;
   updateTodo: any;
@@ -20,12 +20,13 @@ interface TodoProps{
 export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: TodoProps):JSX.Element {
   const [edit, setEdit] =  useState<ToDo | null>(null)
 
-  const submitUpdate = (value: TodoProps) => {
+  const submitUpdate = (value) => {
     updateTodo(edit?.id, value);
     setEdit({
       id: null,
       value: "",
     });
+    
   };
 
   if (edit?.id) {
@@ -33,7 +34,7 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: To
   }
   console.log(todos);
 
-  return todos.map((todo:ToDo, index) => (
+  return todos.map((todo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}
       key={index}
