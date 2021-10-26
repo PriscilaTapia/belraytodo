@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
 
-interface ITodoForm {
+export interface ITodoForm {
   id: number,
   text: string
   isComplete: boolean
@@ -30,20 +30,20 @@ export default function TodoList() {
   };
 
   const removeTodo = (id: number) => {
-    const removeArr = [...todos].filter((todo) => todo.id !== id);
+    const removeArr = todos.filter((todo) => todo.id !== id);
     setTodos(removeArr);
   };
 
   const completeTodo = (id:number) => {
     let updateTodo = todos.map((todo) => {
       if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
+        return {...todo, isComplete: !todo.isComplete}
       }
       return todo;
     });
     setTodos(updateTodo);
   };
-  // console.log(todos);
+
   return (
     <div className="lista">
       <h1>Tareas para hoy?</h1>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { TodoForm } from "./TodoForm";
-// import { RiCloseCircleLine } from "react-icons/ri";
-// import { TiEdit } from "react-icons/ti";
+import {ITodoForm} from './TodoList';
 
 interface ToDo {
   id: any;
@@ -9,42 +8,36 @@ interface ToDo {
   isComplete: boolean
 }
 
-
 interface TodoProps{
-  todos: ToDo;
-  completeTodo: any;
+  todos: ToDo[];
+  completeTodo: (id: number) => void;
   removeTodo: any;
-  updateTodo: any;
+  updateTodo: (id: number, newValue: ITodoForm) => void;
 }
 
 export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: TodoProps):JSX.Element {
-  const [edit, setEdit] =  useState<ToDo | null>(null)
+  const [isEditingTodo, setIsEditingTodo] = useState<number | null>(null)
 
-  const submitUpdate = (value) => {
-    updateTodo(edit?.id, value);
-    setEdit({
-      id: null,
-      value: "",
-    });
-    
+  const submitUpdate = (value : ToDo) => {
+    updateTodo(value?.id, value);
+    setIsEditingTodo(null)
   };
 
-  if (edit?.id) {
-    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
+  if (isEditingTodo) {
+    return <TodoForm onSubmit={submitUpdate} />;
   }
-  console.log(todos);
 
   return todos.map((todo, index) => (
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}
       key={index}
     >
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
+      <div onClick={() => completeTodo(todo.id)}>
         {todo.text}
       </div>
       <div>
         <button
-          onClick={() => setEdit({ id: todo.id, value: todo.text })}
+          onClick={() => setIsEditingTodo(todo.id)}
           className="edit"
         >
           Editar
