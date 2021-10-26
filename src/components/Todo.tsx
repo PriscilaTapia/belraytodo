@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { TodoForm } from "./TodoForm";
 import {ITodoForm} from './TodoList';
 
@@ -11,7 +11,7 @@ interface ToDo {
 interface TodoProps{
   todos: ToDo[];
   completeTodo: (id: number) => void;
-  removeTodo: any;
+  removeTodo: (id: number) => void;
   updateTodo: (id: number, newValue: ITodoForm) => void;
 }
 
@@ -27,7 +27,8 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: To
     return <TodoForm onSubmit={submitUpdate} />;
   }
 
-  return todos.map((todo, index) => (
+  return  <Fragment> {todos.map((todo, index) => (
+   
     <div
       className={todo.isComplete ? "todo-row complete" : "todo-row"}
       key={index}
@@ -47,6 +48,8 @@ export default function Todo({ todos, completeTodo, removeTodo, updateTodo,}: To
           Eliminar
         </button>
       </div>
-    </div>
-  ));
+    </div>    
+  ))}
+  </Fragment>
+  ;
 }
